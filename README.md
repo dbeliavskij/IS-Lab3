@@ -1,24 +1,3 @@
-# IS-Lab3 (EN)
-Intelligent systems. Task for the laboratory on Radial Basis Function Network training.
-# Aim
-Learn to write training (parameter estimation) algorithm for the Radial Basis Function Network based approximator's 2nd laye.
-# Tasks (maximum 8 points)
-1. Create a Radial Basis Function Networks for approximation with:
-- single input;
-- single output;
-- two Gaussian radial basis functions: F = exp(-(x-c)^2/(2*r^2)).
-2. Train the RBF network for approximation task for use 20 examples:
-- input values are generated using equation x = 0.1: 1/22: 1;
-- desired output values are calculated using formula y = (1 + 0.6 \* sin (2 \* pi \* x / 0.7)) + 0.3 \* sin (2 \* pi \* x)) / 2;
-- select manually c1, r1 for the first RBF and c2, r2 for the second RBF;
-- use perceptron training algorithm for estimating output layer parameters w1, w2, w0.
-
-# Additional task (2 additional points)
-Implement any alternative RBF training algorithm, where center positions c1, c2 and radius values r1, r2 are updated during training.
-
-# Suggested reading
-- Neural Networks and Learning Machines (3rd Edition), page 54 for main task (or 261-267 for additional task), Table 1.1. 
-
 # IS-Lab3 (LT)
 Intelektualiosios sistemos. Trečiojo laboratorinio darbo užduotis.
 # Tikslas
@@ -102,7 +81,6 @@ class Perceptron:
             if self.error == 0:
                 break
             self.iter += 1
-        print('Finish training ', self.iter)
     
     def predict(self, x1, x2):
         self.out = x1 * self.w1 + x2 * self.w2 + self.b
@@ -117,8 +95,8 @@ perceptron = Perceptron(0.5, x1_rbf, x2_rbf, y)
 perceptron.train(1000)
 d = perceptron.predict(x1_rbf, x2_rbf)
 e = np.square(np.abs(y - d)) 
-plt.plot(x, e)
-plt.title('Square error')
+plt.plot(x, e, label='Square error')
+plt.legend()
 plt.show()
 plt.plot(x, d, label='Prediction')
 plt.plot(x, y, label = 'Desired output')
@@ -126,18 +104,15 @@ plt.legend()
 plt.show()
 ```
 
-    Finish training  1000
+
     
+![png](output_10_0.png)
+    
+
 
 
     
 ![png](output_10_1.png)
-    
-
-
-
-    
-![png](output_10_2.png)
     
 
 
@@ -150,3 +125,24 @@ Apmokykite SBF tinklą kitu algoritmu, kuris taip pat atnaujina/parenka automati
 ```python
 
 ```
+
+# IS-Lab3 (EN)
+Intelligent systems. Task for the laboratory on Radial Basis Function Network training.
+# Aim
+Learn to write training (parameter estimation) algorithm for the Radial Basis Function Network based approximator's 2nd laye.
+# Tasks (maximum 8 points)
+1. Create a Radial Basis Function Networks for approximation with:
+- single input;
+- single output;
+- two Gaussian radial basis functions: F = exp(-(x-c)^2/(2*r^2)).
+2. Train the RBF network for approximation task for use 20 examples:
+- input values are generated using equation x = 0.1: 1/22: 1;
+- desired output values are calculated using formula y = (1 + 0.6 \* sin (2 \* pi \* x / 0.7)) + 0.3 \* sin (2 \* pi \* x)) / 2;
+- select manually c1, r1 for the first RBF and c2, r2 for the second RBF;
+- use perceptron training algorithm for estimating output layer parameters w1, w2, w0.
+
+# Additional task (2 additional points)
+Implement any alternative RBF training algorithm, where center positions c1, c2 and radius values r1, r2 are updated during training.
+
+# Suggested reading
+- Neural Networks and Learning Machines (3rd Edition), page 54 for main task (or 261-267 for additional task), Table 1.1. 
